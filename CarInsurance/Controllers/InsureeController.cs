@@ -65,62 +65,62 @@ namespace CarInsurance.Controllers //EDIT THIS ONE
 
         public decimal Calculate(Insuree insuree)
         {
-            int quote = 50;
-            DateTime agecheck = new DateTime(2005, 4, 24);
-            if (insuree.DateOfBirth <= agecheck)
+            decimal quote = 50;
+            if (DateTime.Now.Year - insuree.DateOfBirth.Year <= 18)
             {
-                return quote + 100;
+                quote += 100;
             }
-            else return quote;
-
-            DateTime agecheck2 = new DateTime(2005, 4, 25);//older then 18 check
-            DateTime agecheck3 = new DateTime(1998, 4, 24);//25 years ago check
-
-            if (insuree.DateOfBirth >= agecheck2 && insuree.DateOfBirth <= agecheck3)
+            if (DateTime.Now.Year - insuree.DateOfBirth.Year > 18 && DateTime.Now.Year - insuree.DateOfBirth.Year <= 25)
             {
-                return quote + 50;
+                quote += 50;
             }
-            else
+            if (DateTime.Now.Year - insuree.DateOfBirth.Year > 25)
             {
-                return quote + 25;
+                quote += 25;
             }
 
-            if (insuree.CarYear <= 2000)
+
+
+            if (insuree.CarYear < 2000)
             {
-                return quote + 25;
+                quote += 25;
             }
-            else return quote;
+            
 
             if (insuree.CarYear > 2015)
             {
-                return quote + 25;
+                quote += 25;
             }
-            else return quote;
+            
 
             if (insuree.CarMake == "Porsche")
             {
-                return quote + 25;
+                quote += 25;
             }
-            else return quote;
+            
 
             if (insuree.CarMake == "Porsche" && insuree.CarModel == "911 Carrera")
             {
-                return quote + 25;
+               quote += 25;
             }
-            else return quote;
+            
 
             for (int i = 0; i < insuree.SpeedingTickets; i++)
             {
-                return quote + 10;
+                quote += 10;
             }
 
             if (insuree.DUI == true)
             {
-                return quote * 25 / 100;
+                quote *= .25m;
             }
-            else return quote;
+            
+            if (insuree.CoverageType == true)
+            {
+                quote *= .5m;
+            }
 
-
+            return quote;
         }
 
         // GET: Insuree/Edit/5
