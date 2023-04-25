@@ -112,12 +112,12 @@ namespace CarInsurance.Controllers //EDIT THIS ONE
 
             if (insuree.DUI == true)
             {
-                quote *= .25m;
+                quote *= 1.25m;
             }
             
             if (insuree.CoverageType == true)
             {
-                quote *= .5m;
+                quote *= 1.5m;
             }
 
             return quote;
